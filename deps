@@ -1,0 +1,4 @@
+For a success build, these packages are required:
+    python, git, unzip
+For a success build, these python packages are required:
+    Pillow, numpy
