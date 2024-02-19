@@ -1,8 +1,5 @@
-aarch64-elf-gcc -ffreestanding -c $(find -name "*.c") -O2 -Wall -Wextra
-aarch64-elf-as -c $(find -name "*.s")
-
-mv *.o ./build
-mv *.out ./build
-
-aarch64-elf-gcc -T kernel.ld -o build/kernel.elf -ffreestanding -O2 -nostdlib build/*.o build/*.out -lgcc 
-aarch64-elf-objcopy build/kernel.elf -O binary build/kernel8.img
+arm-none-eabi-gcc -mcpu=cortex-a7 -fpic -ffreestanding -c               boot.asm                -o boot.o
+arm-none-eabi-gcc -mcpu=cortex-a7 -fpic -ffreestanding -std=gnu99 -c    kernel/kmain.c          -o kmain.o -O2 -Wall -Wextra
+arm-none-eabi-gcc -mcpu=cortex-a7 -fpic -ffreestanding -std=gnu99 -c    kernel/util/delay.c     -o delay.o -O2 -Wall -Wextra
+arm-none-eabi-gcc -mcpu=cortex-a7 -fpic -ffreestanding -std=gnu99 -c    drivers/serial/uart.c   -o uart.o -O2 -Wall -Wextra
+arm-none-eabi-gcc -T linker.ld -o krnl.elf -ffreestanding -O2 -nostdlib *.o
