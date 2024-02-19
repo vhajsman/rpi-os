@@ -46,6 +46,7 @@ void memory_init(atag_t* atags);
 // --- MEMORY HEAP ---
     #define KERNEL_HEAP_SIZE    (1024*1024)
     #define KERNEL_STACK_SIZE   PAGE_SIZE
+    
     typedef struct heap_segment{
         struct heap_segment* next;
         struct heap_segment* prev;
